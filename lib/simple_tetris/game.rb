@@ -1,10 +1,7 @@
-require_relative 'bootstrap'
-require_relative 'window'
-
 module SimpleTetris
   class Game
     def initialize
-      @window = Window.new(800, 600)
+      @window = Window.new(Config.window_width, Config.window_height)
     end
 
     def run

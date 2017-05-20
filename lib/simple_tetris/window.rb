@@ -1,11 +1,3 @@
-require_relative './graphics/piece_drawer'
-require_relative './graphics/square_drawer'
-require_relative './graphics/grid_drawer'
-require_relative './entities/piece'
-require_relative './shapes/i'
-require_relative './core/delta_time_calculator'
-require_relative './core/pieces_generator'
-
 module SimpleTetris
   class Window < Gosu::Window
     def initialize(width, height)
@@ -17,8 +9,8 @@ module SimpleTetris
         position: Point.new(0, 0),
         width: width,
         height: height,
-        vertical_size: 10,
-        horizontal_size: 10,
+        vertical_size: Config.square_size,
+        horizontal_size: Config.square_size,
         color: Gosu::Color::GRAY
       )
     end
@@ -34,11 +26,11 @@ module SimpleTetris
 
     def handle_input
       if Gosu.button_down?(Gosu::KB_LEFT)
-        @current_piece.position.x -= 10
+        @current_piece.position.x -= Config.square_size
       elsif Gosu.button_down?(Gosu::KB_RIGHT)
-        @current_piece.position.x += 10
+        @current_piece.position.x += Config.square_size
       elsif Gosu.button_down?(Gosu::KB_DOWN)
-        @current_piece.position.y += 10
+        @current_piece.position.y += Config.square_size
       end
     end
 
@@ -67,18 +59,14 @@ module SimpleTetris
     def draw
       @grid_drawer.draw
       @pieces.each do |piece|
-        piece_drawer.draw(piece)
+        piece_drawer.draw(piece, Config.square_size)
       end
     end
 
     private 
 
     def piece_drawer
-      @piece_drawer ||= Graphics::PieceDrawer.new(window: self, square_drawer: square_drawer)
-    end
-
-    def square_drawer
-      @square_drawer ||= Graphics::SquareDrawer.new(self)
+      @piece_drawer ||= Graphics::PieceDrawer.new(window: self)
     end
   end
 end
