@@ -13,12 +13,12 @@ module SimpleTetris
     private_constant :SHAPE_CLASES
 
     def next
-      Entities::Piece.new(random_shape.new, Point.new(400, 0))
+      Factories::Piece.build(400, 0, random_shape_class.new)
     end
 
     private
 
-    def random_shape
+    def random_shape_class
       SHAPE_CLASES.sample
     end
   end

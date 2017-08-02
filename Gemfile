@@ -3,3 +3,4 @@ source "https://rubygems.org"
 
 gem 'gosu'
 gem 'activesupport', require: false
+gem 'pry'

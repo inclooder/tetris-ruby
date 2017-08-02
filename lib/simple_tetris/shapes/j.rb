@@ -1,6 +1,6 @@
 module SimpleTetris
   module Shapes
-    class J
+    class J < Base
       def parts
         @parts ||= make_parts
       end
@@ -8,11 +8,12 @@ module SimpleTetris
       private
 
       def make_parts
+        s = Config.square_size
         [
-          Point.new(0, 0),
-          Point.new(1, 0),
-          Point.new(1, 1),
-          Point.new(1, 2)
+          Part.new(0, 0),
+          Part.new(1, 0),
+          Part.new(1, 1),
+          Part.new(1, 2)
         ]
       end
     end
